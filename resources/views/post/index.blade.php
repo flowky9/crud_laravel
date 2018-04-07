@@ -3,11 +3,12 @@
 @section('content')
 	<div class="container">
 	    <div class="row">
-	    	@foreach($posts as $post)				
+	    					
 
 	        <div class="col-md-8 col-md-offset-2">
+	        	@foreach($posts as $post)
 	            <div class="panel panel-default">
-	                <div class="panel-heading">{{$post->title}} 
+	                <div class="panel-heading">{{$post->title}} <em class="text-small">{{ $post->created_at->diffForHumans() }}</em>
 	                	<div class="text-right">
 	                		<a href="{{ route('post.edit',$post->id) }}" class="btn btn-success btn-sm btn-inline">Edit</a> | 
 	                		<form class="d-inline" method="POST" action=" {{ route('post.destroy',$post->id) }} ">
@@ -22,10 +23,16 @@
 							{{$post->content}}
 						</div>
 	            </div>
+	             @endforeach
+
+	         <!-- Custom pagination -->
+	         @include('pagination.default', ['paginator' => $posts])
 	        </div>
 
-	        @endforeach
+	       
+	        
 	    </div>
+
 	</div>
 	
 @endsection
