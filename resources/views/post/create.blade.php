@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="container">
-		<form action="{{ route('post.store') }}" method="POST">
+		<form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
 			{{ csrf_field() }}
 			<div class="form-group">
 				<label for="">Title</label>
@@ -33,6 +33,14 @@
 
 				    </div>
 				@endif
+			</div>
+			<div class="form-group">
+				<label for="">Image</label>
+				<div class="panel">
+					<div class="panel-body">
+						<input type="file" name="img" class="">
+					</div>
+				</div>
 			</div>
 			<div class="form-group">
 				<input type="submit" name="submit" class="btn btn-primary" value="Save">

@@ -7,6 +7,7 @@ use App\Post;
 use App\Category;
 use Redirect;
 use Validator;
+use DB;
 
 class PostController extends Controller
 {
@@ -53,6 +54,16 @@ class PostController extends Controller
     		'content' => request('content'),
     		'slug' => str_slug(request('title')),
     	]);
+
+        $id = DB::getPdo()->lastInsertId();
+
+        if(request()->hasFile('img')){
+            $store = request('img')->store('imgs');
+            $flight = Post::find($id);
+            $flight->img = $store;
+            $flight->save();
+
+        }
 
     	return redirect()->route('post.create',['status'=> 'success']);
     }

@@ -20,6 +20,9 @@
 	                </div>
 
 						<div class="panel-body">
+							<div class="img">
+								<img src="{{ asset('storage/'.$post->img) }}" alt="">
+							</div>
 							{{$post->content}}
 						</div>
 	            </div>
